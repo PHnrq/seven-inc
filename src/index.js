@@ -12,12 +12,12 @@ import { createServer, Model } from "miragejs";
       server.create("employee",        {
         id: 1,
         name: "José Ferreira",
-        document: "111.111.111-00",
+        document: "123.456.789-00",
         email: "jose@email.com",
-        phone: "(11)9.8765-4321",
+        phone: "(11) 9.8765-4321",
         birth_date: "21/01/2000",
-        salary: "1000",
-        create_at: new Date()
+        salary: "RS 1.000,00",
+        create_at: "21/01/2019"
       })
     },
 
