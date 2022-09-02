@@ -58,12 +58,16 @@ export function Home() {
     handleOpenEmployeesDetail();
   }
 
+  async function handleRequestEmployeesData(){
+    const response = await api.get("employees")
+    const data = response.data
+    setEmployees(data.employees)
+  }
+
   useEffect(() => {
-    api.get("employees").then((response) => {
-      console.log(response.data.employees);
-      setEmployees(response.data.employees);
-    });
-  }, []);
+    handleRequestEmployeesData();
+  },[])
+  
 
   return (
     <>
@@ -92,7 +96,7 @@ export function Home() {
           sx={{mt: 2,}}
         />
 
-        <FormSingUp handleClose={handleCloseSingUp} open={openSingUp}/>
+        <FormSingUp handleClose={handleCloseSingUp} open={openSingUp} handleRequestEmployeesData={handleRequestEmployeesData}/>
       </Box>
     </>
   );
