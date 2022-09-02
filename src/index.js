@@ -23,13 +23,13 @@ import { createServer, Model } from "miragejs";
 
     routes() {
       this.get("/api/employees", (schema) => {
-        return schema.employees.all()
+        return schema.employees.all('employee')
       })
 
       this.post("/api/employees", (schema, request) => {
-        let attrs = JSON.parse(request.requestBody)
+        let data = JSON.parse(request.requestBody)
 
-        return schema.employees.create(attrs)
+        return schema.create('employee', data)
       })
     },
   })
