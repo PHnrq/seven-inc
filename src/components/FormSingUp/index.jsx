@@ -54,33 +54,33 @@ const validationSchema = yup.object({
   // .required()
 });
 
-export function FormSingUp({ handleClose, open, handleRequestEmployeesData }) {
+export function FormSingUp({ handleClose, open, handleRequestEmployeesData, employee}) {
   const [birthDate, setBirthDate] = useState(null);
   const [createAt, setCreateAt] = useState(null);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      document: "",
-      email: "",
-      phone: "",
-      birth_date: "",
-      salary: "",
-      created_at: "",
+      name: employee? employee.name : '',
+      document: employee ? employee.document :"",
+      email: employee? employee.email: "",
+      phone: employee? employee.phone:"",
+      birth_date: employee? employee.birth_date : "",
+      salary: employee? employee.salary : "",
+      created_at: employee? employee.created_at : ""
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      api.post("employees", values);
-      handleRequestEmployeesData()
-      handleClose()
-
-      values.name= ""
-      values.document= ""
-      values.email= ""
-      values.phone= ""
-      setBirthDate(null)
-      values.salary= ""
-      setCreateAt(null)
+        api.post("employees", values);
+        handleRequestEmployeesData()
+        handleClose()
+  
+        values.name= ""
+        values.document= ""
+        values.email= ""
+        values.phone= ""
+        setBirthDate(null)
+        values.salary= ""
+        setCreateAt(null)
     },
   });
 
