@@ -41,25 +41,25 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
       created_at: employee? "" : ""
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
         if(employee){
-          api.put(`employee/${employee.id}`, values);
+          await api.put(`employee/${employee.id}`, values);
 
           handleRequestEmployeesData()
           handleClose()
           handleCloseDetails()
         }else{
-          api.post("employee", values);
+          await api.post("employee", values);
           handleRequestEmployeesData()
           handleClose()
         }
-        values.name= ""
-        values.document= ""
-        values.email= ""
-        values.phone= ""
-        setBirthDate(null)
-        values.salary= ""
-        setCreateAt(null)
+          values.name= ""
+          values.document= ""
+          values.email= ""
+          values.phone= ""
+          setBirthDate(null)
+          values.salary= ""
+          setCreateAt(null)
     },
   });
 

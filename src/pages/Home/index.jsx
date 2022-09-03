@@ -27,14 +27,14 @@ export function Home() {
 
 
   function handleShowDetails(e) {
-    const employee = employees[e.id - 1];
+    const employee = employees.find(employee => e.id === employee.id);
     setSelectedEmployee(employee);
     handleOpenEmployeesDetail();
   }
 
   async function handleRequestEmployeesData(){
     const response = await api.get("/employee")
-    const data = response.data
+    const data = await response.data
     formatEmployeeInfo(data)
 
     setEmployees(data)

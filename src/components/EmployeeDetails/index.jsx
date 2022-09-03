@@ -27,8 +27,8 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
   const handleOpenSingUp = () => setOpenSingUp(true);
   const handleCloseSingUp = () => setOpenSingUp(false);
 
-  const handleDelete = (id) => {
-    api.delete(`/employee/${id}`)
+  const handleDelete = async(id) => {
+    await api.delete(`/employee/${id}`)
     handleRequestEmployeesData();
     handleClose();
   }
