@@ -1,26 +1,75 @@
 # Seven Inc
 
-Sistema de gestão empresarial.
+<b>Sistema de gestão empresarial</b>.
 
 ## Fluxo de utilização
 
 ### Home page
 
-![Home Page](./public/assets/home.jpeg)
+![./public/assets/home.jpeg](./public/assets/home.jpeg)
 
 Funcionalidades:
-- Visualizar funcionarios cadastrados.
-- Adicionar novos funcionarios.
-- Abrir detalhes do funcionario ao clicar.
 
-### Cadastrar novos funcionarios
+- Visualizar funcionários cadastrados.
+- Adicionar novos funcionários.
+- Abrir detalhes do funcionário ao clicar.
 
-![Cadastro de funcionario](./public/assets/new-employee.jpeg)
+### Cadastrar novos funcionários
 
-Ao clicar em novo funcionario abrirar um modal para a incersão de dados. Estão implementadas validações simples mas organizadas de forma que permita validações mais robustas. Ao clicar em cadastrar todos os campos serão validados, se não hover erros de validação o modal será fechado, e o novo funcionario será exibido na tabela.
+![./public/assets/new-employee.jpeg](./public/assets/new-employee.jpeg)
 
-### Detalhes do funcionario
+Ao clicar em novo funcionário irar abrir um modal para a incersão de dados. Estão implementadas validações simples mas organizadas de forma que permita validações mais robustas. Ao clicar em cadastrar todos os campos serão validados, se não hover erros de validação o modal será fechado, e o novo funcionário será exibido na tabela.
 
-![Detalhes do funcionario](./public/assets/employeeDetails.jpeg)
+### Detalhes do funcionário
 
-Ao clicar no funcionario será aberto um modal com todas as informações referente ao funcionario selecionado. A partir deste modal é possivel editar os dados do funcionario ou excluir-lo
+![./public/assets/employeeDetails.jpeg](./public/assets/employeeDetails.jpeg)
+
+Ao clicar no funcionário será aberto um modal com todas as informações referente ao funcionário selecionado. A partir deste modal é possivel editar os dados do funcionário ou excluir-lo
+
+## Executando a aplicação localmente
+
+- Faça um clone da aplicação
+
+HTTPS:
+
+```
+  <https://github.com/PHnrq/seven-inc.git>
+
+```
+
+SSH:
+
+```
+git@github.com:PHnrq/seven-inc.git
+
+```
+
+- Instale as dependências
+
+```
+npm install
+
+```
+
+- Instale o JSON Server
+
+```
+npm install -g json-server
+
+```
+
+- Execute o JSON Server
+
+```
+npm run server
+
+```
+
+- Execute a aplicação
+
+```
+npm start
+
+```
+
+Agora é só aproveitar.
