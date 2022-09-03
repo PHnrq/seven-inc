@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { maskDocument, maskPhone, maskSalary, maskDate } from '../../utils/maskTemplates'
 import { api } from '../../services/api'; 
 
 import { FormSingUp } from '../FormSingUp';
@@ -52,7 +51,7 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
             CPF
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {maskDocument(employee.document)}
+            {employee.document}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
@@ -66,28 +65,28 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
             Telefone
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {maskPhone(employee.phone)}
+            {employee.phone}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Data de nascimento
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {maskDate(employee.birth_date)}
+            {employee.birth_date}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Salário
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {maskSalary(employee.salary)}
+            {employee.salary}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Data da contratação
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {maskDate(employee.created_at)}
+            {employee.created_at}
           </Typography>
 
         </CardContent>

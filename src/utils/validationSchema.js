@@ -15,19 +15,17 @@ export const validationSchema = yup.object({
     .required('Email é obrigatório'),
   phone: yup
     .string('Digite um telefone')
-    // .matches(/^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}\-[0-9]{4}$/, 'Telefone invalido')
+    .matches(/^[(]?[1-9]{2}[)]?\s?[9]{1}\.?[6-9]{1}[0-9]{3}\-?[0-9]{4}$/, 'Telefone invalido, ex: 81987877878')
     .required('O telefone é obrigatório')
   ,
-  // birth_date: yup
-  //   .date()
-  //   .required()
-  // ,
+  birth_date: yup
+    .date('Data de nascimento é obrigatória')
+  ,
   salary: yup
     .string('Informe o valor do salario')
     .matches(/^\$?[\d,]+(\.\d*)?$/, 'Valor invalido')
     .required()
   ,
-  // created_At: yup
-  // .date()
-  // .required()
+  created_At: yup
+  .date()
 });

@@ -27,18 +27,18 @@ const style = {
 
 
 export function FormSingUp({ handleClose, open, handleRequestEmployeesData, employee, handleCloseDetails}) {
-  const [birthDate, setBirthDate] = useState(null);
-  const [createAt, setCreateAt] = useState(null);
+  const [birthDate, setBirthDate] = useState(employee? employee.birth_date : null);
+  const [createAt, setCreateAt] = useState(employee? employee.created_at : null);
 
   const formik = useFormik({
     initialValues: {
       name: employee? employee.name : '',
       document: employee ? employee.document :"",
       email: employee? employee.email: "",
-      phone: employee? employee.phone:"",
-      birth_date: employee? employee.birth_date : "",
-      salary: employee? employee.salary : "",
-      created_at: employee? employee.created_at : ""
+      phone: employee? employee.phone.replace(/[^\d]/g, ""):"",
+      birth_date: employee?  "" : "",
+      salary: employee? employee.salary.replace(/[^\d]/g, "") : "",
+      created_at: employee? "" : ""
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -79,7 +79,7 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
                 display: "flex",
                 flexDirection: "column",
                 gap: 3,
-                width: 370,
+                width: 300,
               }}
             >
               <TextField
@@ -139,8 +139,8 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
                 onChange={(newValue) => {
                   setBirthDate(newValue);
                 }}
-                // error={formik.touched.birth_date && Boolean(formik.errors.birth_date)}
-                // helperText={formik.touched.birth_date && formik.errors.birth_date}
+                error={formik.touched.birth_date && Boolean(formik.errors.birth_date)}
+                helperText={formik.touched.birth_date && formik.errors.birth_date}
                 renderInput={(params) => <TextField {...params} />}
               />
 
@@ -164,8 +164,8 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
                 onChange={(newValue) => {
                   setCreateAt(newValue);
                 }}
-                // error={formik.touched.created_at && Boolean(formik.errors.created_at)}
-                // helperText={formik.touched.created_at && formik.errors.created_at}
+                error={formik.touched.created_at && Boolean(formik.errors.created_at)}
+                helperText={formik.touched.created_at && formik.errors.created_at}
                 renderInput={(params) => <TextField {...params} />}
               />
 
