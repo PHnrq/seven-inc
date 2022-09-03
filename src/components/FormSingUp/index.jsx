@@ -54,7 +54,7 @@ const validationSchema = yup.object({
   // .required()
 });
 
-export function FormSingUp({ handleClose, open, handleRequestEmployeesData, employee}) {
+export function FormSingUp({ handleClose, open, handleRequestEmployeesData, employee, handleCloseDetails}) {
   const [birthDate, setBirthDate] = useState(null);
   const [createAt, setCreateAt] = useState(null);
 
@@ -70,10 +70,17 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        api.post("employees", values);
-        handleRequestEmployeesData()
-        handleClose()
-  
+        if(employee){
+          api.put(`employee/${employee.id}`, values);
+
+          handleRequestEmployeesData()
+          handleClose()
+          handleCloseDetails()
+        }else{
+          api.post("employee", values);
+          handleRequestEmployeesData()
+          handleClose()
+        }
         values.name= ""
         values.document= ""
         values.email= ""
