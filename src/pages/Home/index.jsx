@@ -59,9 +59,10 @@ export function Home() {
   }
 
   async function handleRequestEmployeesData(){
-    const response = await api.get("employees")
+    const response = await api.get("/employee")
+    console.log(response)
     const data = response.data
-    setEmployees(data.employees)
+    setEmployees(data)
   }
 
   useEffect(() => {
@@ -76,6 +77,7 @@ export function Home() {
         employee={selectedEmployee}
         handleClose={handleCloseEmployeesDetail}
         open={openEmployeesDetail}
+        handleRequestEmployeesData={handleRequestEmployeesData}
       />
 
       <Box sx={{ height: 455, width: "100%", p: 2, cursor: "pointer", display: "flex", flexDirection: 'column'}}>
