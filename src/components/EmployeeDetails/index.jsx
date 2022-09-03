@@ -1,12 +1,15 @@
 import * as React from 'react';
+import { maskDocument, maskPhone, maskSalary, maskDate } from '../../utils/maskTemplates'
+import { api } from '../../services/api'; 
+
+import { FormSingUp } from '../FormSingUp';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { api } from '../../services/api'; 
-import { FormSingUp } from '../FormSingUp';
 
 const style = {
   position: 'absolute',
@@ -19,14 +22,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-// function formataCPF(cpf){
-//   //retira os caracteres indesejados...
-//   cpf = cpf.replace(/[^\d]/g, "");
-  
-//   //realizar a formatação...
-//     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-// }
 
 export default function EmployeeDetails({employee, handleClose, open, handleRequestEmployeesData}) {
   const [openSingUp, setOpenSingUp] = React.useState(false);
@@ -57,7 +52,7 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
             CPF
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {employee.document}
+            {maskDocument(employee.document)}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
@@ -71,28 +66,28 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
             Telefone
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {employee.phone}
+            {maskPhone(employee.phone)}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Data de nascimento
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {employee.birth_date}
+            {maskDate(employee.birth_date)}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Salário
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {employee.salary}
+            {maskSalary(employee.salary)}
           </Typography>
 
           <Typography variant="body2" mt={2} color="text.secondary">
             Data da contratação
           </Typography>
           <Typography variant="body1" color="text.primary">
-            {employee.created_at}
+            {maskDate(employee.created_at)}
           </Typography>
 
         </CardContent>
@@ -103,8 +98,6 @@ export default function EmployeeDetails({employee, handleClose, open, handleRequ
         
         <FormSingUp handleClose={handleCloseSingUp} open={openSingUp} employee={employee} handleRequestEmployeesData={handleRequestEmployeesData} handleCloseDetails={handleClose}/>
       </Card>
-
-      
   </Modal>
   );
 }

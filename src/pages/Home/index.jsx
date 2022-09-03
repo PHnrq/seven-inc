@@ -1,46 +1,22 @@
 import { useState, useEffect } from "react";
+import { api } from "../../services/api";
+import {columns} from '../../utils/columnsDataGridConfig'
+import {formatEmployeeInfo} from '../../utils/maskTemplates'
 
 import Header from "../../components/Header";
-import Box from "@mui/material/Box";
+import EmployeeDetails from "../../components/EmployeeDetails";
+import { FormSingUp } from "../../components/FormSingUp";
 
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { DataGrid } from "@mui/x-data-grid";
-import EmployeeDetails from "../../components/EmployeeDetails";
-import { FormSingUp } from "../../components/FormSingUp";
-import { api } from "../../services/api";
 
-const columns = [
-  {
-    field: "name",
-    headerName: "Nome",
-    width: 250,
-  },
-  {
-    field: "email",
-    headerName: "Email",
-    width: 250,
-  },
-  {
-    field: "phone",
-    headerName: "Telefone",
-    width: 150,
-  },
-  {
-    field: "salary",
-    headerName: "Salário",
-    width: 130,
-  },
-  {
-    field: "created_at",
-    headerName: "Data da contratação",
-    width: 200,
-  },
-];
 
 export function Home() {
   const [employees, setEmployees] = useState([]);
-
+  
+  const [selectedEmployee, setSelectedEmployee] = useState({});
   const [openEmployeesDetail, setOpenEmployeesDetail] = useState(false);
   const handleOpenEmployeesDetail = () => setOpenEmployeesDetail(true);
   const handleCloseEmployeesDetail = () => setOpenEmployeesDetail(false);
@@ -49,8 +25,6 @@ export function Home() {
   const handleOpenSingUp = () => setOpenSingUp(true);
   const handleCloseSingUp = () => setOpenSingUp(false);
 
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedEmployee, setSelectedEmployee] = useState({});
 
   function handleShowDetails(e) {
     const employee = employees[e.id - 1];
@@ -60,15 +34,15 @@ export function Home() {
 
   async function handleRequestEmployeesData(){
     const response = await api.get("/employee")
-    console.log(response)
     const data = response.data
+    formatEmployeeInfo(data)
+
     setEmployees(data)
   }
 
   useEffect(() => {
     handleRequestEmployeesData();
   },[])
-  
 
   return (
     <>

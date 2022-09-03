@@ -1,14 +1,17 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import * as yup from 'yup';
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
+import { api } from "../../services/api";
+import {validationSchema} from '../../utils/validationSchema';
+
 import { useFormik } from "formik";
+
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { api } from "../../services/api";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 const style = {
   position: "absolute",
@@ -22,37 +25,6 @@ const style = {
   p: 4,
 };
 
-const validationSchema = yup.object({
-  name: yup
-    .string('Digite um nome')
-    .required('O nome é obrigatório')
-  ,
-  document: yup
-    .string('Digite o CPF')
-    .matches(/^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/, 'CPF inválido')
-    .required('CPF obrigatório'),
-  email: yup
-    .string('Digite um email')
-    .email('Digite um email valido')
-    .required('Email é obrigatório'),
-  phone: yup
-    .string('Digite um telefone')
-    // .matches(/^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}\-[0-9]{4}$/, 'Telefone invalido')
-    .required('O telefone é obrigatório')
-  ,
-  // birth_date: yup
-  //   .date()
-  //   .required()
-  // ,
-  salary: yup
-    .string('Informe o valor do salario')
-    .matches(/^\$?[\d,]+(\.\d*)?$/, 'Valor invalido')
-    .required()
-  ,
-  // created_At: yup
-  // .date()
-  // .required()
-});
 
 export function FormSingUp({ handleClose, open, handleRequestEmployeesData, employee, handleCloseDetails}) {
   const [birthDate, setBirthDate] = useState(null);
@@ -161,6 +133,7 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
 
               <DatePicker
                 required
+                inputFormat="DD/MM/YYYY"
                 label="Data de nascimento"
                 value={formik.values.birth_date = birthDate}
                 onChange={(newValue) => {
@@ -185,6 +158,7 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
 
               <DatePicker
                 required
+                inputFormat="DD/MM/YYYY"
                 label="Data da contratação"
                 value={formik.values.created_at = createAt}
                 onChange={(newValue) => {
