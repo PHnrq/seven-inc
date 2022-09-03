@@ -175,7 +175,7 @@ export function FormSingUp({ handleClose, open, handleRequestEmployeesData, empl
                 fullWidth
                 type="submit"
               >
-                Submit
+                Cadastrar
               </Button>
             </Box>
           </form>
